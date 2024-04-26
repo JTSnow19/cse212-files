@@ -18,6 +18,14 @@ public static class Divisors {
     /// <returns>List of divisors</returns>
     private static List<int> FindDivisors(int number) {
         List<int> results = new List<int>();
+        int count=1;
+        do{
+            var item = number/count;
+            if (number % count ==0){
+                results.Add(item);
+            }
+            count ++;
+        } while (number>=count);
         // Todo problem 1
         return results;
     }

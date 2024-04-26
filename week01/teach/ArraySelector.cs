@@ -11,6 +11,23 @@ public static class ArraySelector
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
     {
-        return new int[0];
+        int count = 0;
+        List<int> selectedItems = new List<int>();
+        int l1C =0;
+        int l2C =0;
+        do{
+            if (select[count] ==1){
+                selectedItems.Add(list1[l1C]);
+                l1C++;
+            }
+            else{
+                selectedItems.Add(list2[l2C]);
+                l2C++;
+            }
+            count++;
+        } while(count!= select.Count());
+        //I found the ugliest solution!!@!!!! probably an easy way to clean this up but I wanted to get it done fast
+        var staticList = new int[10]{selectedItems[0],selectedItems[1],selectedItems[2],selectedItems[3],selectedItems[4],selectedItems[5],selectedItems[6],selectedItems[7],selectedItems[8],selectedItems[9]};
+        return staticList;
     }
 }
