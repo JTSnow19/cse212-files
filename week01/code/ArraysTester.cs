@@ -39,7 +39,17 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //ok, im thinking a classic foreach loop, with a count to keep it simple.
+        //the count acts as an index count and a multiplier.
+        var items = new double[length];
+        int count =0;
+        foreach(var item in items){
+            count++;
+            items[count-1] =count * number;
+        }
+
+
+        return items; // replace this return statement with your own
     }
     
     /// <summary>
@@ -57,5 +67,14 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        //given the ease of use of lists i can just have it pop the last index, then add the number to the start. i can use amount to determine how many
+        //times the loop goes.
+        int count = 0;
+        do{
+            int movingItem=data[data.Count()-1];
+            data.RemoveAt(data.Count()-1);
+            data.Insert(0,movingItem);
+            count++;
+        } while (count!=amount);
     }
 }
