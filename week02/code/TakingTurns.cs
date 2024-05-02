@@ -15,7 +15,7 @@
         // Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: Ok, so it seems that the last person added goes first, it also seems that they aren't being dequed, rather they are going in a row Sue 3x etc etc
 
         Console.WriteLine("---------");
 
@@ -56,7 +56,7 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: Not reading 0 as infinite
 
         Console.WriteLine("---------");
 
@@ -73,7 +73,7 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: -is not read as infinite
 
         Console.WriteLine("---------");
 
@@ -83,6 +83,6 @@
         Console.WriteLine("Test 5");
         players = new TakingTurnsQueue();
         players.GetNextPerson();
-        // Defect(s) Found:
+        // Defect(s) Found: NA
     }
 }
