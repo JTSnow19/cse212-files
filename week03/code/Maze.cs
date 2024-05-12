@@ -27,34 +27,43 @@ public class Maze {
     /// <summary>
     /// Check to see if you can move left.  If you can, then move.  If you
     /// can't move, then display "Can't go that way!"
-    /// </summary>
-    public void MoveLeft() {
-        // FILL IN CODE
+    /// </summary> //this is very annoying
+    public void MoveLeft(){
+        if (_mazeMap.TryGetValue((_currX , _currY), out bool[] directions) && directions[0]){
+            _currX--;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
-    /// <summary>
-    /// Check to see if you can move right.  If you can, then move.  If you
-    /// can't move, then display "Can't go that way!"
-    /// </summary>
-    public void MoveRight() {
-        // FILL IN CODE
+    public void MoveRight(){
+        if (_mazeMap.TryGetValue((_currX , _currY), out bool[] directions) && directions[1]){
+            _currX++;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
-    /// <summary>
-    /// Check to see if you can move up.  If you can, then move.  If you
-    /// can't move, then display "Can't go that way!"
-    /// </summary>
-    public void MoveUp() {
-        // FILL IN CODE
+    public void MoveUp(){
+        if (_mazeMap.TryGetValue((_currX, _currY ), out bool[] directions) && directions[2]){
+            _currY--;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
-    /// <summary>
-    /// Check to see if you can move down.  If you can, then move.  If you
-    /// can't move, then display "Can't go that way!"
-    /// </summary>
-    public void MoveDown() {
-        // FILL IN CODE
-    }
+    public void MoveDown(){
+        if (_mazeMap.TryGetValue((_currX, _currY ), out bool[] directions) && directions[3]){
+            _currY++;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
+    }//finally! man what a pain
+
 
     public void ShowStatus() {
         Console.WriteLine($"Current location (x={_currX}, y={_currY})");

@@ -111,6 +111,20 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+        //var wList= words.ToArray();
+        List<string> banned = new List<string>();
+        foreach(string item in words){
+            var charArray = item.ToCharArray();
+            Array.Reverse(charArray);
+            string s = string.Join("", charArray);
+            if(words.Contains(s) && !banned.Contains(s) && s!=item){
+                Console.WriteLine($"{item} & {s}");
+                banned.Add(item);
+                banned.Add(s);
+
+
+            }
+        }
     }
 
     /// <summary>
@@ -132,11 +146,20 @@ public static class SetsAndMapsTester {
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
+            //keys 3 and 6 seem fine to me, ahh it needs to be an int so ill default to 0
+            string dString =fields[0];
+            int value =Int32.Parse(dString);
+            if (!degrees.ContainsKey(fields[3])){
+                degrees[fields[3]] = 1;
+            }
+            else{
+                degrees[fields[3]]++;
+            }
         }
 
         return degrees;
     }
-
+    
     /// <summary>
     /// Determine if 'word1' and 'word2' are anagrams.  An anagram
     /// is when the same letters in a word are re-organized into a 
@@ -158,9 +181,54 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        //ok check if letters match in length and in word
+        string word1X = word1.Replace(" ", "");
+        string word2X = word2.Replace(" ", "");
+        if (word1X.Length!=word2X.Length){
+            return false;
+        }
+        var charArray1 = word1X.ToCharArray();
+        var charArray2 = word2X.ToCharArray();
+        //base check that I wrote before realizing I need a dictionary
+        //foreach(char x in word1){
+        //    if (!word2.Contains(x)){
+        //        return false;
+        //    }
+        //}
+        for (int i = 0; i < charArray1.Length; i++)
+        {
+            charArray1[i] = char.ToLower(charArray1[i]);
+            charArray2[i] = char.ToLower(charArray2[i]);
+        }
+        var letterCount = new Dictionary<char, int>();
+        foreach (var letter in charArray1){
+        if (!letterCount.ContainsKey(letter))
+        {
+            letterCount[letter] = 1;
+        }
+        else
+        {
+            letterCount[letter] += 1;
+        }
+        }
+        foreach (var letter in charArray2){
+        if (!letterCount.ContainsKey(letter))
+        {
+            letterCount[letter] = 1;
+        }
+        else
+        {
+            letterCount[letter] += 1;
+        }
+        }
+        foreach (int value in letterCount.Values){
+            if (value % 2 != 0){
+                return false;
+            }
+        }
+        return true;
     }
-
+    
     /// <summary>
     /// Sets up the maze dictionary for problem 4
     /// </summary>
