@@ -28,6 +28,19 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void InsertTail(int value) {
         // TODO Problem 1
+        Node newNode = new Node(value);
+
+        //insert tail
+        if (_tail is null){
+            _tail = newNode;
+            _head = newNode;
+
+        }else{
+            newNode.Prev = _tail; 
+            _tail.Next = newNode; 
+            _tail = newNode; 
+        }
+
     }
 
 
@@ -56,6 +69,13 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void RemoveTail() {
         // TODO Problem 2
+        if (_tail == _head){
+            _tail = null;
+            _head = null;
+        } else if(_tail !=null){
+            _tail.Prev!.Next = null;
+            _tail = _tail.Prev;
+        }
     }
 
     /// <summary>
@@ -94,6 +114,26 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void Remove(int value) {
         // TODO Problem 3
+        Node newNode = new Node(value);
+        var current = _head;
+        while (current != null){
+            //var current = _head;
+            //if (current ==null){
+            //    break;
+            //}
+            if (current == newNode) {
+                    //current= null;
+                    //current.Next!.Prev = null;
+                    current.Next.Prev = current.Prev;
+                    current.Prev.Next = current.Next;} //ok, I keep getting really weird syntax errors and honestly this has been a headache.
+                    //I attempted a few solutions here, and problems one and two should work fine. I'm ok with stopping here if the lord asks.
+                    //current = current.Next;
+                    //_head = _head.Next;
+                    //current = current.Next;
+                    //break; 
+                
+            current =current.Next;
+        };
     }
 
     /// <summary>
